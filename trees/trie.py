@@ -47,7 +47,7 @@ class Trie:
             if char not in temp:
                 temp[char] = {}
             temp = temp[char]
-        temp['#'] = ''
+        temp['#'] = True
     
     def search(self, word: str) -> bool:
         temp = self.trie
