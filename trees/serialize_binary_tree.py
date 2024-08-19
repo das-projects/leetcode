@@ -31,8 +31,10 @@ class Codec:
         """
         # Using BFS to serialize the tree
         def helper(node):
+            # if the node is None, return "N,"
             if not node:
                 return "N,"
+            # return the value of the node and recursively call the function for the left and right children
             return str(node.val) + "," + helper(node.left) + helper(node.right)
 
         return helper(root)
@@ -43,17 +45,21 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
+        # Split the string by comma
         values = iter(data.split(","))
-        
+        # define the recursive function
         def helper(values):
+            # get the next value
             val = next(values)
+            # if the value is "N", return None
             if val == "N":
                 return None
+            # create a new node with the value and recursively call the function for the left and right children
             node = TreeNode(int(val))
             node.left = helper(values)
             node.right = helper(values)
             return node
-
+        # return the result of the recursive function
         return helper(values)
     
 
