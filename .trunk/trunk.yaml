@@ -16,6 +16,7 @@ runtimes:
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
   enabled:
+    - ruff@0.6.1
     - git-diff-check
     - trufflehog@3.81.9
 actions:

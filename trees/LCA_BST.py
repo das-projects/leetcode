@@ -20,6 +20,8 @@
 # p and q will exist in the BST.
 
 from typing import Optional
+
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -27,12 +29,16 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
-    def lowestCommonAncestor(self, root: Optional[TreeNode], p: TreeNode, q: TreeNode) -> TreeNode:
+    def lowestCommonAncestor(
+        self, root: Optional[TreeNode], p: TreeNode, q: TreeNode
+    ) -> TreeNode:
         # Main Method:
         # Iterative Approach using BST Property
         # Time Complexity: O(H), where H is the height of the tree
-        temp = root 
+        temp = root
+
         # Traverse the tree
         while temp:
             if p.val > temp.val and q.val > temp.val:

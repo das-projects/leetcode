@@ -3,7 +3,7 @@
 # Difficulty: Medium
 # Question: Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.
 #
-# Example 1: 
+# Example 1:
 # Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 # Output: [3,9,20,null,null,15,7]
 #
@@ -24,6 +24,7 @@
 import collections
 from typing import List, Optional
 
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -31,27 +32,32 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
-    '''
+    """
     Recursive solution
     Time complexity: O(n)
     Space complexity: O(n)
-    '''
+    """
+
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         # Initialize the mapping of inorder values to their indices
         mapping = {}
-        for i in range(len(inorder)):
-            mapping[inorder[i]] = i
-        
-        # Convert the preorder list to a deque (double ended queue)for efficient popping from the left. This is important because the preorder list is processed in a first-in-first-out manner.
+        for i, elem in enumerate(inorder):
+            mapping[elem] = i
+
+        # Convert the preorder list to a deque (double ended queue) for efficient popping from the left. This is important because the preorder list is processed in a first-in-first-out manner.
         preorder = collections.deque(preorder)
 
+        # Helper method to build the tree
         def build(start, end):
             # If the start index is greater than the end index, return None
-            if start > end: 
-                    return None
+            if start > end:
+                return None
+
             # Pop the leftmost element from the preorder list and create a new TreeNode with the value
             root = TreeNode(preorder.popleft())
+
             # Find the index of the root value in the inorder list
             mid = mapping[root.val]
 
@@ -60,5 +66,5 @@ class Solution:
             root.right = build(mid + 1, end)
 
             return root
-        
+
         return build(0, len(preorder) - 1)
