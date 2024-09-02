@@ -31,7 +31,7 @@ class Solution:
 
         # Extract the k most frequent elements
         result = []
-        for i in range(k):
+        for _ in range(k):
             element = heapq.heappop(heap)
             result.append(element[1])
         return result
